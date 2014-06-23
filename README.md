@@ -1,4 +1,6 @@
-dvb-tests
-=========
+DVB-T Stream capture testing
+============================
 
-DVB-T Linux API tests
+Contains some handy tools on capturing DVB-T transmission data.
+
+
