@@ -2,36 +2,36 @@
 #define _DVBLIB_H
 
 enum DVB_TYPE {
-	DVB_TYPE_TERRESTIAL,
-	DVB_TYPE_SATELLITE,
-	DVB_TYPE_CABLE,
+    DVB_TYPE_TERRESTIAL,
+    DVB_TYPE_SATELLITE,
+    DVB_TYPE_CABLE,
 };
 
 enum DVB_STATUS {
-	DVB_STATUS_HAS_SIGNAL = 0x1,
-	DVB_STATUS_HAS_CARRIER = 0x2,
-	DVB_STATUS_HAS_VITERBI = 0x4,
-	DVB_STATUS_HAS_SYNC = 0x8,
-	DVB_STATUS_HAS_LOCK = 0x10,
-	DVB_STATUS_TIMEDOUT = 0x20,
-	DVB_STATUS_REINIT = 0x40,
+    DVB_STATUS_HAS_SIGNAL = 0x1,
+    DVB_STATUS_HAS_CARRIER = 0x2,
+    DVB_STATUS_HAS_VITERBI = 0x4,
+    DVB_STATUS_HAS_SYNC = 0x8,
+    DVB_STATUS_HAS_LOCK = 0x10,
+    DVB_STATUS_TIMEDOUT = 0x20,
+    DVB_STATUS_REINIT = 0x40,
 };
 
 enum DVB_STREAM_TYPE {
-	DVB_STREAM_VIDEO,
-	DVB_STREAM_AUDIO,
-	DVB_STREAM_TELETEXT,
-	DVB_STREAM_SUBTITLE,
-	DVB_STREAM_PCR,
-	DVB_STREAM_OTHER
+    DVB_STREAM_VIDEO,
+    DVB_STREAM_AUDIO,
+    DVB_STREAM_TELETEXT,
+    DVB_STREAM_SUBTITLE,
+    DVB_STREAM_PCR,
+    DVB_STREAM_OTHER
 };
 
 typedef struct {
     int fd_frontend;
     int fd_demuxer;
-	char error[128];
-	char name[128];
-	int type;
+    char error[128];
+    char name[128];
+    int type;
 } dvb_device;
 
 int dvb_open(dvb_device *dev, int dev_id, int frontend_id, int demuxer_id);
