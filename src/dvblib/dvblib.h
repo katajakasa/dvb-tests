@@ -75,8 +75,9 @@ void dvb_close(dvb_device *dev);
 /*! \brief Tunes the DVB device to some frequency
  * 
  * This function tunes the DVB frontend to a given frequency. Note! At the moment, only DVB-T is
- * properly supported. DVB-C and DVB-S will likely NOT work at all. All values (bandwidth, etc.)
- * will be automatically found, if the device is good enough. If not, then you're out of luck :)
+ * properly supported. DVB-C and DVB-S will likely NOT work at all. All values (except bandwidth
+ * and hierarchy, which are 8MHz and None) will be automatically found if the device is good enough.
+ * If not, then you're out of luck :)
  *
  * Retuning can be done by just calling this function again.
  *
