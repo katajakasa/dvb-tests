@@ -1,6 +1,9 @@
 DVB-T Stream capture testing
 ============================
 
-Contains some handy tools on capturing DVB-T transmission data.
+A simple DVB library and tools for capturing DVB-T transmission data.
 
+Howto compile:
+--------------
 
+Use make :)
