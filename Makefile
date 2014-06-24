@@ -2,7 +2,7 @@
 all: captool
 
 captool:
-	gcc -Wall -o captool captool.c dvblib.c
+	gcc -Wall -Isrc/ -o captool src/captool.c src/dvblib/dvblib.c
 
 clean:
 	rm -f  *.o *~ captool
