@@ -268,14 +268,11 @@ int dvb_init_section_stream(dvb_device *dev, int pid);
  * or timeout errors. In this case you should either read faster, read larger blocks, or grow your hw buffer
  * using dvb_set_buffer_size().
  *
- * If you start getting CRC errors, it means you're receiving crap data :)
- *
  * On success, the value will be higher than 0, and contains the amount of data read from the device.
  * On EOF, value 0 is returned. 
  * On general error (bad params and such), value -1 is returned.
  * On hw buffer overflow, -2 is returned.
  * On hw timeout, -3 is returned.
- * On stream CRC error, -4 is returned.
  * In all error cases, dvb_get_error() returns the full error message
  *
  * \param dev Opened device struct

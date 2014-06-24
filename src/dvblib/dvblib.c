@@ -82,6 +82,36 @@ int dvb_open(dvb_device *dev, int dev_id, int frontend_id, int demuxer_id) {
         goto error_2;
     }
 
+    // Check caps :)
+    if(info.caps == FE_IS_STUPID) {
+        sprintf(dev->error, "DVB device is too stupid :( Sorry.");
+        goto error_2;
+    }
+    if(!(info.caps & FE_CAN_INVERSION_AUTO)) {
+        sprintf(dev->error, "No INVERSION_AUTO");
+        goto error_2;
+    }
+    if(!(info.caps & FE_CAN_FEC_AUTO)) {
+        sprintf(dev->error, "No FEC_AUTO");
+        goto error_2;
+    }
+    if(!(info.caps & FE_CAN_QAM_AUTO)) {
+        sprintf(dev->error, "No QAM_AUTO");
+        goto error_2;
+    }
+    if(!(info.caps & FE_CAN_TRANSMISSION_MODE_AUTO)) {
+        sprintf(dev->error, "No TRANSMISSION_MODE_AUTO");
+        goto error_2;
+    }
+    if(!(info.caps & FE_CAN_BANDWIDTH_AUTO)) {
+        sprintf(dev->error, "No BANDWIDTH_AUTO");
+        goto error_2;
+    }
+    if(!(info.caps & FE_CAN_GUARD_INTERVAL_AUTO)) {
+        sprintf(dev->error, "No GUARD_INTERVAL_AUTO");
+        goto error_2;
+    }
+
     // Copy information
     strcpy(dev->name, info.name);
     switch(info.type) {
@@ -224,10 +254,9 @@ size_t dvb_read_stream(dvb_device *dev, void *buffer, size_t size) {
             dev->error,
             "Unable to read data: %s",
             strerror(errno));
-        
+
         if(errno == EOVERFLOW) return -2;
         if(errno == ETIMEDOUT) return -3;
-        if(errno == ECRC) return -4;
     }
     return val;
 }
