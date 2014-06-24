@@ -13,8 +13,8 @@
 enum DVB_TYPE {
     DVB_TYPE_TERRESTIAL, //< Device is DVB-T
     DVB_TYPE_SATELLITE, //< Device is DVB-S
-    DVB_TYPE_CABLE, // Device is DVB-C
-    DVB_TYPE_COUNT,
+    DVB_TYPE_CABLE, //< Device is DVB-C
+    DVB_TYPE_COUNT, //< Number of types
 };
 
 enum DVB_STATUS {
@@ -28,21 +28,21 @@ enum DVB_STATUS {
 };
 
 enum DVB_STREAM_TYPE {
-    DVB_STREAM_VIDEO,
-    DVB_STREAM_AUDIO,
-    DVB_STREAM_TELETEXT,
-    DVB_STREAM_SUBTITLE,
-    DVB_STREAM_PCR,
-    DVB_STREAM_OTHER,
-    DVB_STREAM_TYPE_COUNT,
+    DVB_STREAM_VIDEO, //< Video
+    DVB_STREAM_AUDIO, //< Audio
+    DVB_STREAM_TELETEXT, //< Teletext
+    DVB_STREAM_SUBTITLE, //< Subtitles
+    DVB_STREAM_PCR, //< System time counter
+    DVB_STREAM_OTHER, //< Some other (unknown) data
+    DVB_STREAM_TYPE_COUNT, //< Number of stream types
 };
 
 typedef struct {
-    int fd_frontend;
-    int fd_demuxer;
-    char error[256];
-    char name[128];
-    int type;
+    int fd_frontend; //< Frontend handle
+    int fd_demuxer; //< Demuxer handle
+    char error[256]; //< Errormessage buffer (0 terminated)
+    char name[128]; //< Device name (0 terminated)
+    int type; //< Device type (se DVB_TYPE)
 } dvb_device;
 
 /*! \brief Opens a DVB device for operations
