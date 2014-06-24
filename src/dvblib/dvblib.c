@@ -224,8 +224,10 @@ size_t dvb_read_stream(dvb_device *dev, void *buffer, size_t size) {
             dev->error,
             "Unable to read data: %s",
             strerror(errno));
+        
         if(errno == EOVERFLOW) return -2;
-        if(errno == ETIMEDOUT) return -3; 
+        if(errno == ETIMEDOUT) return -3;
+        if(errno == ECRC) return -4;
     }
     return val;
 }
