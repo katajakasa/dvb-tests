@@ -7,3 +7,8 @@ Howto compile:
 --------------
 
 Use make :)
+
+Documentation
+-------------
+
+See https://katajakasa.fi/projects/dvblib/
