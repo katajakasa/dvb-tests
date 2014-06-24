@@ -13,6 +13,16 @@
 
 #define READ_SIZE 16384
 
+void print_status(int status) {
+    if(status & DVB_STATUS_HAS_SIGNAL) printf("SIGNAL ");
+    if(status & DVB_STATUS_HAS_CARRIER) printf("CARRIER ");
+    if(status & DVB_STATUS_HAS_VITERBI) printf("VITERBI ");
+    if(status & DVB_STATUS_HAS_SYNC) printf("SYNC ");
+    if(status & DVB_STATUS_HAS_LOCK) printf("LOCK ");
+    if(status & DVB_STATUS_TIMEDOUT) printf("TIMEDOUT ");
+    if(status & DVB_STATUS_REINIT) printf("REINIT ");
+}
+
 int main(int argc, char *argv[]) {
     dvb_device dev;
     int freq, pid, stype, ptype,amount;
@@ -86,17 +96,9 @@ int main(int argc, char *argv[]) {
     // Wait for signal to stabilize
     printf("Waiting for lock ...\n");
     while(!(status & DVB_STATUS_HAS_LOCK)) {
-        if(dvb_get_status(&dev, &status)) {
-            printf("Unable to fetch status!\n");
-            goto error_2;
-        }
-
+        dvb_get_status(&dev, &status);
         printf("Status: ");
-        if(status & DVB_STATUS_HAS_SIGNAL) printf("SIGNAL ");
-        if(status & DVB_STATUS_HAS_CARRIER) printf("CARRIER ");
-        if(status & DVB_STATUS_HAS_VITERBI) printf("VITERBI ");
-        if(status & DVB_STATUS_HAS_SYNC) printf("SYNC ");
-        if(status & DVB_STATUS_HAS_LOCK) printf("LOCK ");
+        print_status(status);
         printf("\n");
 
         usleep(100000);
@@ -133,9 +135,11 @@ int main(int argc, char *argv[]) {
         dvb_get_ber(&dev, &ber);
         dvb_get_uncorrected_blocks(&dev, &ub);
         dvb_get_signal_strength(&dev, &ss);
+        dvb_get_status(&dev, &status);
 
-        printf("READ %d, DONE %d/%d, SNR %d, SS %d, BER %u, UB %u\n", got, done, amount, snr, ss, ber, ub);
-        
+        printf("READ %d, DONE %d/%d, SNR %d, SS %d, BER %u, UB %u, flags = ", got, done, amount, snr, ss, ber, ub);
+        print_status(status);
+        printf("\n");
     }
     dvb_stop_stream(&dev);
 

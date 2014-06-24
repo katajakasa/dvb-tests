@@ -103,10 +103,6 @@ int dvb_open(dvb_device *dev, int dev_id, int frontend_id, int demuxer_id) {
         sprintf(dev->error, "No TRANSMISSION_MODE_AUTO");
         goto error_2;
     }
-    if(!(info.caps & FE_CAN_BANDWIDTH_AUTO)) {
-        sprintf(dev->error, "No BANDWIDTH_AUTO");
-        goto error_2;
-    }
     if(!(info.caps & FE_CAN_GUARD_INTERVAL_AUTO)) {
         sprintf(dev->error, "No GUARD_INTERVAL_AUTO");
         goto error_2;
