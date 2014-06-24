@@ -11,38 +11,38 @@
 #include <inttypes.h>
 
 enum DVB_TYPE {
-    DVB_TYPE_TERRESTIAL, //< Device is DVB-T
-    DVB_TYPE_SATELLITE, //< Device is DVB-S
-    DVB_TYPE_CABLE, //< Device is DVB-C
-    DVB_TYPE_COUNT, //< Number of types
+    DVB_TYPE_TERRESTIAL, ///< Device is DVB-T
+    DVB_TYPE_SATELLITE, ///< Device is DVB-S
+    DVB_TYPE_CABLE, ///< Device is DVB-C
+    DVB_TYPE_COUNT, ///< Number of types
 };
 
 enum DVB_STATUS {
-    DVB_STATUS_HAS_SIGNAL = 0x1, //< Some sort of signal was found
-    DVB_STATUS_HAS_CARRIER = 0x2, //< DVB carrier found
-    DVB_STATUS_HAS_VITERBI = 0x4, //< FEC is stable
-    DVB_STATUS_HAS_SYNC = 0x8, //< Sync bytes found
-    DVB_STATUS_HAS_LOCK = 0x10, //< Signal lock achieved
-    DVB_STATUS_TIMEDOUT = 0x20, //< No signal lock within the last ~2 seconds
-    DVB_STATUS_REINIT = 0x40, //< Frontend was reinitialized, reset recommended
+    DVB_STATUS_HAS_SIGNAL = 0x1, ///< Some sort of signal was found
+    DVB_STATUS_HAS_CARRIER = 0x2, ///< DVB carrier found
+    DVB_STATUS_HAS_VITERBI = 0x4, ///< FEC is stable
+    DVB_STATUS_HAS_SYNC = 0x8, ///< Sync bytes found
+    DVB_STATUS_HAS_LOCK = 0x10, ///< Signal lock achieved
+    DVB_STATUS_TIMEDOUT = 0x20, ///< No signal lock within the last ~2 seconds
+    DVB_STATUS_REINIT = 0x40, ///< Frontend was reinitialized, reset recommended
 };
 
 enum DVB_STREAM_TYPE {
-    DVB_STREAM_VIDEO, //< Video
-    DVB_STREAM_AUDIO, //< Audio
-    DVB_STREAM_TELETEXT, //< Teletext
-    DVB_STREAM_SUBTITLE, //< Subtitles
-    DVB_STREAM_PCR, //< System time counter
-    DVB_STREAM_OTHER, //< Some other (unknown) data
-    DVB_STREAM_TYPE_COUNT, //< Number of stream types
+    DVB_STREAM_VIDEO, ///< Video
+    DVB_STREAM_AUDIO, ///< Audio
+    DVB_STREAM_TELETEXT, ///< Teletext
+    DVB_STREAM_SUBTITLE, ///< Subtitles
+    DVB_STREAM_PCR, ///< System time counter
+    DVB_STREAM_OTHER, ///< Some other (unknown) data
+    DVB_STREAM_TYPE_COUNT, ///< Number of stream types
 };
 
 typedef struct {
-    int fd_frontend; //< Frontend handle
-    int fd_demuxer; //< Demuxer handle
-    char error[256]; //< Errormessage buffer (0 terminated)
-    char name[128]; //< Device name (0 terminated)
-    int type; //< Device type (se DVB_TYPE)
+    int fd_frontend; ///< Frontend handle
+    int fd_demuxer; ///< Demuxer handle
+    char error[256]; ///< Errormessage buffer (0 terminated)
+    char name[128]; ///< Device name (0 terminated)
+    int type; ///< Device type (se DVB_TYPE)
 } dvb_device;
 
 /*! \brief Opens a DVB device for operations
